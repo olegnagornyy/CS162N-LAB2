@@ -6,37 +6,24 @@ namespace BinaryNumbersQueue
     {
         static void Main(string[] args)
         {
-            Queue<string> queque = new Queue<string>();
-
-            int n = GetInt("The number you want to express as a binary number", 1, 1000);
-
-            queque.Enqueue("1");
-
-            for (int i = 1; i <= n; i++)
+            Console.Write("Enter positive number: ");
+            if (!int.TryParse(Console.ReadLine(), out int n) || n <= 0)
             {
-                string next = queque.Dequeue();
-                queque.Enqueue(next + "0");
-                queque.Enqueue(next + "1");
-                Console.WriteLine(next);
-
+                Console.WriteLine("Error");
+                return;
             }
 
-            Console.ReadLine();
+            Queue<string> queue = new Queue<string>();
+            queue.Enqueue("1");
 
-        }
-
-        public static int GetInt(string label, int min, int max)
-        {
-            bool isInt = false;
-            int number = min - 1;
-            do
+            Console.WriteLine("Binary numbers from 1 to " + n + ":");
+            for (int i = 0; i < n; i++)
             {
-                Console.Write(String.Format("Please enter a whole number between {0} and {1} for {2}: ", min, max, label));
-                string input = Console.ReadLine();
-                isInt = int.TryParse(input, out number);
-            } while (!(isInt && number >= min && number <= max));
-
-            return number;
+                string current = queue.Dequeue();
+                Console.WriteLine(current);
+                queue.Enqueue(current + "0");
+                queue.Enqueue(current + "1");
+            }
         }
     }
 }

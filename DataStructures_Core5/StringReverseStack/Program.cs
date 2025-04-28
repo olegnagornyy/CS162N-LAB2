@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-
-namespace StringReverseStack
+namespace BinaryNumbersQueue
 {
     class Program
     {
         static void Main(string[] args)
         {
+            Console.Write("Enter string to reverse: ");
+            string input = Console.ReadLine();
             Stack<char> stack = new Stack<char>();
 
-            Console.WriteLine("Please enter a set of characters into the console. It will be printed in reverse.");
-
-            string input = Console.ReadLine();
-
-            for(int i = 0; i < input.Length; i++ )
+            foreach (char ch in input)
             {
-                char n = input[i];
-                stack.Push(n);
+                stack.Push(ch);
             }
 
-            Console.WriteLine("Here is the output: ");
-                foreach (char n in stack)
-                    Console.Write(n + "");
+            Console.Write("Reversed: ");
+            while (stack.Count > 0)
+            {
+                Console.Write(stack.Pop());
+            }
+            Console.WriteLine();
         }
     }
 }
